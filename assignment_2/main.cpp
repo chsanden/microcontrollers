@@ -9,7 +9,7 @@
 #define SLEEP_TIMER 100ms // definerer oppdateringsfrekvensen som 10Hz / oppdaterer hver 100ms
 
 AnalogIn potMeter(A0);      //definerer potensiometer input på port A0 som "potMeter"
-DigitalIn button(BUTTON1);  //definerer knapp input fra knapp på brettet som "button"
+DigitalIn button(D3);  //definerer knapp input fra knapp på brettet som "button"
 
 //definerer de tre diodene som "ledX" på utgangene D0-D2
 PwmOut led1(D0);
