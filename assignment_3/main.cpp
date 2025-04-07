@@ -4,23 +4,31 @@
 #include "DFRobot_RGBLCD1602.h"
 #include "DevI2C.h"
 
-DigitalIn button(D3, PullDown);
-
-I2C i2clcd(PB_9, PB_8);
-DevI2C i2cSensor(PB_11, PB_10);
-
-DFRobot_RGBLCD1602 lcd (&i2clcd, RGB_ADDRESS_V20_7BIT, LCD_ADDRESS_7BIT, 16, 2);
-HTS221Sensor hts221 (&i2cSensor);
-
-bool showTemp = true;
+//Bruker interrupt for å kunne bytte visning selv om knappen trykkes utenfor timeframe til while loopen
+InterruptIn button(D3, PullDown);
+volatile bool toggleFlag = false;
+volatile bool showTemp = true;
 
 Timer debounceTimer;
 
+void buttonPressed()
+{
+    if(debounceTimer.read_ms() > 100)
+    {
+        toggleFlag = true;
+        debounceTimer.reset();
+    }
+}
 
 int main()
-{
+{   
     //initialiserer sensor og skjerm
-    printf("Starting...\n\r");
+    I2C i2clcd(PB_9, PB_8);
+    DevI2C i2cSensor(PB_11, PB_10);
+
+    DFRobot_RGBLCD1602 lcd (&i2clcd, RGB_ADDRESS_V20_7BIT, LCD_ADDRESS_7BIT, 16, 2);
+    HTS221Sensor hts221 (&i2cSensor);
+
     hts221.init(NULL);
     hts221.enable();
 
@@ -30,21 +38,25 @@ int main()
     lcd.setRGB(255,255,255);
 
     debounceTimer.start();
+    button.fall(&buttonPressed);
 
     while(true)
     {
+        //Hent sensorverdier
         float temp, hum;
         hts221.get_temperature(&temp);
         hts221.get_humidity(&hum);
 
-        if(button.read() == 1 && debounceTimer.read_ms() > 150)
+        //Hvis knappen er trykket - bytt visning
+        if (toggleFlag)
         {
             showTemp = !showTemp;
-            debounceTimer.reset();
-
+            toggleFlag = false;
         }
+        
         lcd.setCursor(0,0);
 
+        //Temp visnings loop
         if(showTemp)
         {
             char tempStr[20];
@@ -64,43 +76,42 @@ int main()
 
             else 
             {
-                lcd.setRGB(255, 0, 0);
+                    lcd.setRGB(255, 0, 0);
             }
-        }
+        }   
 
-        else if(!showTemp)
+        //Hum visnings loop
+        else
         {
-            char humStr[20];
-            sprintf(humStr, "Hum: %.1f %%  ", hum);
-            lcd.printf(humStr);
+                char humStr[20];
+                sprintf(humStr, "Hum: %.1f %%  ", hum);
+                lcd.printf(humStr);
 
-            //Lager prosentverdier ut av hum variablen
-            float perc = hum / 100.0f;
-            if(perc > 1.0f)
-            {
-                perc = 1.0f;
-            }
-            if(perc < 0.0f)
-            {
-                perc = 0.0f;
-            }
+                //Lager prosentverdier ut av hum variablen
+                float perc = hum / 100.0f;
+                if(perc > 1.0f)
+                {
+                    perc = 1.0f;
+                }
+                if(perc < 0.0f)
+                {
+                    perc = 0.0f;
+                }
 
-            //Lager variabler slik at bakgrunnsfargen gradvis forandres i takt med fuktigheten
-            int r = (int)(255 * (1.0f - perc));
-            int g = (int)(255 * (1.0f - perc));
-            int b = 255;
+                //Lager variabler slik at bakgrunnsfargen gradvis forandres i takt med fuktigheten
+                int r = (int)(255 * (1.0f - perc));
+                int g = (int)(255 * (1.0f - perc));
+                int b = 255;
 
-            //Legger inn variablene til fargefunksjonen
-            lcd.setRGB(r, g, b);
+                //Legger inn variablene til fargefunksjonen
+                lcd.setRGB(r, g, b);
 
-            
+                debounceTimer.reset();
         }
 
         //Avleser hvert sekund
-        thread_sleep_for(1000);
-        
-
-
-
+        thread_sleep_for(1000);        
     }
+        
 }
+
