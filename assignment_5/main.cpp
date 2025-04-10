@@ -1,23 +1,19 @@
 #include "mbed.h"
 #include "DFRobot_RGBLCD1602.h"
-
 //Declaring and configuring the LCD display
 I2C i2clcd (PB_9, PB_8);
 DFRobot_RGBLCD1602 lcd (&i2clcd, RGB_ADDRESS_V20_7BIT, LCD_ADDRESS_7BIT, 16, 2);
 BufferedSerial pc(USBTX, USBRX);
-
 //Declaring I/O
 InterruptIn pauseButt(D3, PullDown);
 InterruptIn resetButt(D4, PullDown);
 InterruptIn add5Butt(D5, PullDown);
 InterruptIn sub5Butt(D6, PullDown);
 PwmOut buzzer(D2);
-
 //Setting up timers and timeout
 Timeout t;
 Timer d;
 Timer r;
-
 //Declating variables
 volatile bool isPaused = true;
 volatile bool wasPaused = !isPaused;
@@ -32,7 +28,6 @@ int elapsedTime = 0;
 int remainingTime = initialTime;
 int oldRemainingTime = remainingTime;
 const int debounceTime = 101;
-
 //Declaring callbacks and functions
 void countingCB()
 {   
@@ -41,7 +36,6 @@ void countingCB()
     timeComplete = true;
     remainingTime = 0;
 }
-
 void pauseCB()
 {
     if(d.read_ms() > debounceTime)
@@ -50,7 +44,6 @@ void pauseCB()
         d.reset();
     }
 }
-
 void resetCB()
 {
     if(d.read_ms() > debounceTime)
@@ -66,7 +59,6 @@ void resetCB()
         d.reset();
     }
 }
-
 void add5CB()
 {
     if((d.read_ms() > debounceTime) && ((posCount || negCount) <= 4))
@@ -75,7 +67,6 @@ void add5CB()
         d.reset();
     }
 }
-
 void sub5CB()
 {
     if((d.read_ms() > debounceTime) && ((posCount || negCount) <= 4))
@@ -84,7 +75,6 @@ void sub5CB()
         d.reset();
     }
 }
-
 void screenPrint(int i)
 {
     lcd.clear();
