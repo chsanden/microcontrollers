@@ -1,16 +1,14 @@
 #include "mbed.h"
-#include "utils/func.h"
+#include "util.h"
+
+
 
 
 int main()
 {
 
-    while (true)
-    {
+
+    while (true) {
         
-
-
-
-
     }
 }
