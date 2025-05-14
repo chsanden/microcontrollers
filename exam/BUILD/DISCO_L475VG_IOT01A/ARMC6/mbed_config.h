@@ -179,6 +179,16 @@
 #define MBED_CONF_GEMALTO_CINTERION_PROVIDE_DEFAULT                             0                                                                                                // set by library:GEMALTO_CINTERION
 #define MBED_CONF_GENERIC_AT3GPP_BAUDRATE                                       115200                                                                                           // set by library:GENERIC_AT3GPP
 #define MBED_CONF_GENERIC_AT3GPP_PROVIDE_DEFAULT                                0                                                                                                // set by library:GENERIC_AT3GPP
+#define MBED_CONF_ISM43362_PROVIDE_DEFAULT                                      1                                                                                                // set by application[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_READ_THREAD_STACK_STATICALLY_ALLOCATED               0                                                                                                // set by library:ism43362
+#define MBED_CONF_ISM43362_WIFI_DATAREADY                                       PE_1                                                                                             // set by library:ism43362[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_WIFI_DEBUG                                           0                                                                                                // set by library:ism43362
+#define MBED_CONF_ISM43362_WIFI_MISO                                            PC_11                                                                                            // set by library:ism43362[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_WIFI_MOSI                                            PC_12                                                                                            // set by library:ism43362[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_WIFI_NSS                                             PE_0                                                                                             // set by library:ism43362[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_WIFI_RESET                                           PE_8                                                                                             // set by library:ism43362[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_WIFI_SCLK                                            PC_10                                                                                            // set by library:ism43362[DISCO_L475VG_IOT01A]
+#define MBED_CONF_ISM43362_WIFI_WAKEUP                                          PB_13                                                                                            // set by library:ism43362[DISCO_L475VG_IOT01A]
 #define MBED_CONF_LORA_ADR_ON                                                   1                                                                                                // set by library:lora
 #define MBED_CONF_LORA_APPLICATION_EUI                                          {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}                                                 // set by library:lora
 #define MBED_CONF_LORA_APPLICATION_KEY                                          {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} // set by library:lora
@@ -303,7 +313,9 @@
 #define MBED_CONF_NSAPI_ADD_EVENT_LISTENER_RETURN_CHANGE                        0                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_DEFAULT_MESH_TYPE                                       THREAD                                                                                           // set by library:nsapi
 #define MBED_CONF_NSAPI_DEFAULT_STACK                                           LWIP                                                                                             // set by library:nsapi
-#define MBED_CONF_NSAPI_DEFAULT_WIFI_SECURITY                                   NONE                                                                                             // set by library:nsapi
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD                                   "Brattaasen45"                                                                                   // set by application[*]
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_SECURITY                                   WPA_WPA2                                                                                         // set by application[*]
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_SSID                                       "PWJ"                                                                                            // set by application[*]
 #define MBED_CONF_NSAPI_DNS_ADDRESSES_LIMIT                                     10                                                                                               // set by library:nsapi
 #define MBED_CONF_NSAPI_DNS_CACHE_SIZE                                          3                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_DNS_RESPONSE_WAIT_TIME                                  10000                                                                                            // set by library:nsapi
@@ -325,11 +337,11 @@
 #define MBED_CONF_PLATFORM_ERROR_REBOOT_MAX                                     1                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_FATAL_ERROR_AUTO_REBOOT_ENABLED                      1                                                                                                // set by library:platform[DISCO_L475VG_IOT01A]
 #define MBED_CONF_PLATFORM_MAX_ERROR_FILENAME_LEN                               16                                                                                               // set by library:platform
-#define MBED_CONF_PLATFORM_MINIMAL_PRINTF_ENABLE_64_BIT                         1                                                                                                // set by library:platform
-#define MBED_CONF_PLATFORM_MINIMAL_PRINTF_ENABLE_FLOATING_POINT                 0                                                                                                // set by library:platform
-#define MBED_CONF_PLATFORM_MINIMAL_PRINTF_SET_FLOATING_POINT_MAX_DECIMALS       6                                                                                                // set by library:platform
+#define MBED_CONF_PLATFORM_MINIMAL_PRINTF_ENABLE_64_BIT                         0                                                                                                // set by application[*]
+#define MBED_CONF_PLATFORM_MINIMAL_PRINTF_ENABLE_FLOATING_POINT                 1                                                                                                // set by application[*]
+#define MBED_CONF_PLATFORM_MINIMAL_PRINTF_SET_FLOATING_POINT_MAX_DECIMALS       6                                                                                                // set by application[*]
 #define MBED_CONF_PLATFORM_POLL_USE_LOWPOWER_TIMER                              0                                                                                                // set by library:platform
-#define MBED_CONF_PLATFORM_STDIO_BAUD_RATE                                      9600                                                                                             // set by library:platform
+#define MBED_CONF_PLATFORM_STDIO_BAUD_RATE                                      115200                                                                                           // set by application[*]
 #define MBED_CONF_PLATFORM_STDIO_BUFFERED_SERIAL                                0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_NEWLINES                               1                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_TTY_NEWLINES                           1                                                                                                // set by library:platform
@@ -373,7 +385,7 @@
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE                                   512                                                                                              // set by library:rtos
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE_DEBUG_EXTRA                       128                                                                                              // set by library:rtos[STM]
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE_TICKLESS_EXTRA                    256                                                                                              // set by library:rtos
-#define MBED_CONF_RTOS_MAIN_THREAD_STACK_SIZE                                   4096                                                                                             // set by library:rtos
+#define MBED_CONF_RTOS_MAIN_THREAD_STACK_SIZE                                   16384                                                                                            // set by application[*]
 #define MBED_CONF_RTOS_MSGQUEUE_DATA_SIZE                                       0                                                                                                // set by library:rtos
 #define MBED_CONF_RTOS_MSGQUEUE_NUM                                             0                                                                                                // set by library:rtos
 #define MBED_CONF_RTOS_MUTEX_NUM                                                0                                                                                                // set by library:rtos
@@ -440,6 +452,7 @@
 #define MBED_CONF_TARGET_LSE_AVAILABLE                                          1                                                                                                // set by target:MCU_STM32
 #define MBED_CONF_TARGET_LSE_DRIVE_LOAD_LEVEL                                   RCC_LSEDRIVE_LOW                                                                                 // set by target:MCU_STM32L4
 #define MBED_CONF_TARGET_MPU_ROM_END                                            0x0fffffff                                                                                       // set by target:Target
+#define MBED_CONF_TARGET_NETWORK_DEFAULT_INTERFACE_TYPE                         WIFI                                                                                             // set by application[DISCO_L475VG_IOT01A]
 #define MBED_CONF_TARGET_RTC_CLOCK_SOURCE                                       USE_RTC_CLK_LSE_OR_LSI                                                                           // set by target:MCU_STM32
 #define MBED_CONF_TARGET_TICKLESS_FROM_US_TICKER                                0                                                                                                // set by target:Target
 #define MBED_CONF_TARGET_XIP_ENABLE                                             0                                                                                                // set by target:Target
