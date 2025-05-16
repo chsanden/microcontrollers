@@ -339,7 +339,7 @@ void ipGeoData(TCPSocket &s, SocketAddress &sa, NetworkInterface *n, JsonDocumen
     s.close();
 }
 
-void setCords(JsonDocument &doc, float &lat, float &lon, string &city)
+void setCords(JsonDocument &doc, float &lat, float &lon)
 {
     if(lat == NULL || lon == NULL)
     {
@@ -347,11 +347,10 @@ void setCords(JsonDocument &doc, float &lat, float &lon, string &city)
         lat = doc["lat"];
         lon = doc["lon"];
     }
-    city = doc["city"].as<string>();
 }
 
 void timeConnect(TCPSocket &s, SocketAddress &sa, NetworkInterface *n, float &lat, float &lon, 
-long &epochSec, string &day, string &timezone, string &dst)
+long &epochSec, string &day, string &timezone, string &dst, string &city)
 {
     s.open(n);
     nsapi_size_or_error_t result = n->gethostbyname("api.timezonedb.com", &sa);
@@ -432,6 +431,7 @@ long &epochSec, string &day, string &timezone, string &dst)
         dst = "DST Active";
     }
     
+    city = doc["cityName"].as<string>();
     timezone = doc["abbreviaton"].as<string>();
     epochSec = doc["timestamp"];
     s.close();
@@ -479,12 +479,12 @@ string extractDate(const string &hdr)
     }
 }
 
-void ipFunc(NetworkInterface *&n, TCPSocket &s, SocketAddress &sa, JsonDocument &doc, float &lat, float &lon, string &city)
+void ipFunc(NetworkInterface *&n, TCPSocket &s, SocketAddress &sa, JsonDocument &doc, float &lat, float &lon)
 {
     connectLocal(n);
     ipGeoConnect(s, sa, n);
     ipGeoData(s, sa, n, doc);
-    setCords(doc, lat, lon, city);
+    setCords(doc, lat, lon);
 }
 
 void weatherFunc(NetworkInterface *n, TLSSocket &s, SocketAddress &sa, JsonDocument &doc,float &lat, float &lon, float &temp, string &weather)

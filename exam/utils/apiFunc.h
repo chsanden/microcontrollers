@@ -18,13 +18,13 @@ void weatherData(TLSSocket &s, SocketAddress &sa, float &lat, float &lon, JsonDo
 void setWeatherData(float &temp, std::string &weather, JsonDocument &doc);
 void ipGeoConnect(TCPSocket &s, SocketAddress &sa, NetworkInterface *n);
 void ipGeoData(TCPSocket &s, SocketAddress &sa, NetworkInterface *n, JsonDocument &doc);
-void setCords(JsonDocument &doc, float &lat, float &lon, string &city);
+void setCords(JsonDocument &doc, float &lat, float &lon);
 void timeConnect(TCPSocket &s, SocketAddress &sa, NetworkInterface *n, float &lat, float &lon, 
-long &epochSec, string &day, string &timezone, string &dst);
+long &epochSec, string &day, string &timezone, string &dst, string &city);
 void setTime(long &epoch);
 void getHHMM(string &currentTimeString);
 string extractDate(const string &hdr);
-void ipFunc(NetworkInterface *&n, TCPSocket &s, SocketAddress &sa, JsonDocument &doc, float &lat, float &lon, string &city);
+void ipFunc(NetworkInterface *&n, TCPSocket &s, SocketAddress &sa, JsonDocument &doc, float &lat, float &lon);
 void weatherFunc(NetworkInterface *n, TLSSocket &s, SocketAddress &sa, JsonDocument &doc,float &lat, float &lon, float &temp, string &weather);
 void newsFeed(TCPSocket &s, SocketAddress &sa, NetworkInterface *n, std::vector<string> &titles);
 
