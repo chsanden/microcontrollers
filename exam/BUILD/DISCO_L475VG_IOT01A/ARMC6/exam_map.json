@@ -2,7 +2,7 @@
     {
         "module": "DFRobot_RGBLCD1602.o",
         "size": {
-            ".text": 1160,
+            ".text": 1206,
             ".data": 0,
             ".bss": 58,
             ".text-delta": 0,
@@ -13,7 +13,18 @@
     {
         "module": "HTS221\\HTS221Sensor.o",
         "size": {
-            ".text": 66,
+            ".text": 1194,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 0,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "HTS221\\HTS221_driver.o",
+        "size": {
+            ".text": 931,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -46,7 +57,7 @@
     {
         "module": "[lib]\\libcpp_w.l",
         "size": {
-            ".text": 67230,
+            ".text": 67304,
             ".data": 0,
             ".bss": 2961,
             ".text-delta": 0,
@@ -112,10 +123,10 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 1172,
-            ".data": 4,
-            ".bss": 2481,
-            ".text-delta": 32,
+            ".text": 17314,
+            ".data": 112,
+            ".bss": 2881,
+            ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -134,7 +145,7 @@
     {
         "module": "mbed-os\\connectivity",
         "size": {
-            ".text": 178934,
+            ".text": 180125,
             ".data": 150,
             ".bss": 300,
             ".text-delta": 0,
@@ -145,7 +156,7 @@
     {
         "module": "mbed-os\\drivers",
         "size": {
-            ".text": 3244,
+            ".text": 3944,
             ".data": 0,
             ".bss": 928,
             ".text-delta": 0,
@@ -200,7 +211,7 @@
     {
         "module": "mbed-os\\rtos",
         "size": {
-            ".text": 1663,
+            ".text": 1671,
             ".data": 0,
             ".bss": 8,
             ".text-delta": 0,
@@ -222,9 +233,9 @@
     {
         "module": "mbed-os\\targets",
         "size": {
-            ".text": 26519,
+            ".text": 30880,
             ".data": 8,
-            ".bss": 1632,
+            ".bss": 1708,
             ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
@@ -233,8 +244,8 @@
     {
         "module": "utils\\apiFunc.o",
         "size": {
-            ".text": 18781,
-            ".data": 24,
+            ".text": 12299,
+            ".data": 0,
             ".bss": 1,
             ".text-delta": 0,
             ".data-delta": 0,
@@ -244,7 +255,7 @@
     {
         "module": "utils\\screen.o",
         "size": {
-            ".text": 980,
+            ".text": 1042,
             ".data": 0,
             ".bss": 1,
             ".text-delta": 0,
@@ -254,10 +265,10 @@
     },
     {
         "summary": {
-            "static_ram": 34950,
+            "static_ram": 35510,
             "static_ram_delta": 0,
-            "total_flash": 370962,
-            "total_flash_delta": 32
+            "total_flash": 389207,
+            "total_flash_delta": 0
         }
     }
 ]

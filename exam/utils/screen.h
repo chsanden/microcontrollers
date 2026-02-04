@@ -7,16 +7,12 @@
 #include "DFRobot_RGBLCD1602.h"
 #include "apiFunc.h"
 
+//All descriptions in .cpp
 
-
-void startScreen(DFRobot_RGBLCD1602 &lcd, long &epoch, float &lat, float &lon, string &city);
+void startScreen(HTS221Sensor &hts221, DFRobot_RGBLCD1602 &lcd, long &epoch, float &lat, float &lon, string &city);
 void displayInit(DFRobot_RGBLCD1602 &lcd);
 void forecastScreen(DFRobot_RGBLCD1602 &lcd, string &weather, float &temp);
 void dateTimeScreen(DFRobot_RGBLCD1602 &lcd, string &day, string &time);
-void newsScreen(DFRobot_RGBLCD1602 &lcd, vector<string> &headlines);
-
-
-
-
+void newsScreen(DFRobot_RGBLCD1602 &lcd, vector<string> &headlines, size_t &pos);
 
 #endif

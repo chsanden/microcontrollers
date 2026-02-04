@@ -333,10 +333,10 @@ BUILD\DISCO_L475VG_IOT01A\ARMC6\main.o: main.cpp \
   mbed-os\storage\filesystem\fat\include\fat\FATFileSystem.h \
   mbed-os\platform\include\platform\PlatformMutex.h \
   mbed-os\storage\filesystem\fat\ChaN\ff.h \
-  mbed-os\storage\filesystem\fat\ChaN\ffconf.h utils\screen.h \
+  mbed-os\storage\filesystem\fat\ChaN\ffconf.h DFRobot_RGBLCD1602.h \
   HTS221\HTS221Sensor.h HTS221\X_NUCLEO_COMMON\DevI2C\DevI2C.h \
   mbed-os\hal\include\hal\pinmap.h mbed-os\drivers\include\drivers\SPI.h \
   HTS221\HTS221_driver.h HTS221\ST_INTERFACES\Sensors\HumiditySensor.h \
   HTS221\ST_INTERFACES\Common\Component.h \
-  HTS221\ST_INTERFACES\Sensors\TempSensor.h DFRobot_RGBLCD1602.h \
+  HTS221\ST_INTERFACES\Sensors\TempSensor.h utils\screen.h \
   utils\apiFunc.h
